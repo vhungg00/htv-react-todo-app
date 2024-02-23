@@ -3,5 +3,11 @@
 .wrapper {
   max-width: 750px;
   width: 100%;
-  margin: 0 auto;
+  padding: 0 16px;
+  margin: 1.2rem auto 0 auto;
+}
+.appHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
