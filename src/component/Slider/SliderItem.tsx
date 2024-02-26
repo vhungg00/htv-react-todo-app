@@ -1,11 +1,17 @@
 import React from "react";
+import {Image} from "@/component/Image";
 
-export const SliderItem: React.FC<{children?: React.ReactElement}> = ({children}) => {
+export type Props = {
+    imagePath: string,
+    imageAlt?: string
+}
+
+export const SliderItem: React.FC<Props> = ({imagePath, imageAlt}) => {
 
     return(
-        <div className="box__image">
+        <div>
             <a href="/#" target="_blank">
-                {children}
+                <Image className="image" src={imagePath} alt={imageAlt}/>
             </a>
         </div>
     )
