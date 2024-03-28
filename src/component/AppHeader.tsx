@@ -14,13 +14,15 @@ export const AppHeader: React.FC = () => {
     const filterStatus = useAppSelector((state: RootState) => state.todo.filterStatus);
 
     return (
-        <div className={styles.appHeader}>
-            <Button type='button'>Add Task</Button>
-            <SelectButton selectButtonId="status" value={filterStatus}>
-                {optionListSelectButton.map((temp) => (
-                    <option key={temp.id} value={temp.id}>{temp.title}</option>
-                ))}
-            </SelectButton>
+        <div className="container">
+            <div className={styles.appHeader}>
+                <Button type='button'>Add Task</Button>
+                <SelectButton selectButtonId="status" value={filterStatus}>
+                    {optionListSelectButton.map((temp) => (
+                        <option key={temp.id} value={temp.id}>{temp.title}</option>
+                    ))}
+                </SelectButton>
+            </div>
         </div>
     )
 };

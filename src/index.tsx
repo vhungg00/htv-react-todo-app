@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {HelmetProvider} from "react-helmet-async";
 import {Provider} from 'react-redux';
+import {ThemeProvider} from '@/context/ThemeProvider';
 import '@fontsource/poppins';
 import '@fontsource/poppins/500.css';
 import '@fontsource/poppins/600.css';
@@ -16,11 +17,13 @@ import {store} from './store';
 
 ReactDOM.render(
     <React.StrictMode>
-        <HelmetProvider>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </HelmetProvider>
+        <ThemeProvider>
+            <HelmetProvider>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+            </HelmetProvider>
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 )

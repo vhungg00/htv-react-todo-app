@@ -29,8 +29,15 @@ body {
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+/* custom utility classes */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+    min-width: 32rem;
+    max-width: 120rem;
+    padding-right: 1.6rem;
+    padding-left: 1.6rem;
+    margin-top: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+  }

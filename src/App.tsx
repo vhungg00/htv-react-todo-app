@@ -1,26 +1,35 @@
 import React from 'react';
-import styles from '@/styles/modules/app.module.scss';
-import {Helmet} from "react-helmet-async";
-import {PageTitle} from "@/component/PageTitle";
-import {AppHeader} from "@/component/AppHeader";
-import {SimpleSlider} from "@/component/Slider/SimpleSlider";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import loadable from '@loadable/component';
+
+import { ScrollToTop } from './component/ScrollToTop';
+import { AppHeader } from './component/AppHeader';
+import { ScreenUrlPath } from './typing/ScreenUrlPath';
+
+const Home = loadable(() => import('@/pages/Home'), {
+    resolveComponent: (components) => components.Home
+})
+
+const LuckyGame = loadable(() => import('@/pages/LuckyWheelGame'), {
+    resolveComponent: (components) => components.LuckyWheelGame
+});
+
+const PageNotFound = loadable(() => import('@/component/404'));
 
 const App: React.FC = () => {
     return (
-        <>
-            <Helmet>
-                <title>Todo app</title>
-            </Helmet>
-            <div className='container'>
-                <PageTitle>Todo</PageTitle>
-                <SimpleSlider />
-            </div>
-            <div className={styles.wrapper}>
+        <div>
+            <Router>
                 <AppHeader />
-            </div>
-
-        </>
+                <ScrollToTop />
+                <Routes>
+                    <Route path={ScreenUrlPath.Root} element={<Home />} />
+                    <Route path={ScreenUrlPath.LuckyWheelGame} element={<LuckyGame />} />
+                    <Route path='*' element={<PageNotFound />} />
+                </Routes>
+            </Router>
+        </div>
     );
-}
+};
 
 export default App;
