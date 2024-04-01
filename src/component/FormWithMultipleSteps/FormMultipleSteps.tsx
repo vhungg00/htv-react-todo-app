@@ -21,7 +21,7 @@ export type FormRegister = {
 
 export const FormWithMultipleSteps: React.FC = () => {
 
-
+    const { register } = useForm<FormRegister>({ shouldUnregister: true })
 
     return (
         <>
@@ -31,7 +31,7 @@ export const FormWithMultipleSteps: React.FC = () => {
             <Container>
                 <h2 className='heading'>Register</h2>
                 <form id="regForm">
-
+                    <input {...register('fname')} />
                 </form>
             </Container>
         </>
