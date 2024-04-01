@@ -1,10 +1,15 @@
-// @ts-ignore
-import todo_bnr_001 from './banner/ol_bnr_357.jpg';
-
-// @ts-ignore
-import todo_bnr_002 from './banner/ol_bnr_372.jpg';
+import iconCart from './icon_cart.png';
+import iconMenu from './icon_menu_ols.png';
+import iconSearch from './icon_search.png';
+import iconLogoOls from './logoOls.png';
+import iconCloseMenu from './icon_close_gray_large.png';
+import iconSprite from './icon_sprite.png'
 
 export {
-    todo_bnr_001,
-    todo_bnr_002
-}
+    iconCart,
+    iconMenu,
+    iconSearch,
+    iconLogoOls,
+    iconSprite,
+    iconCloseMenu,
+};

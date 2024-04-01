@@ -5,6 +5,11 @@
     margin: 0;
     padding: 0;
 }
+
+* {
+    font-family: "Raleway", sans-serif;
+}
+
 :root {
     --primaryPurple: #646ff0;
     --black-1: #646681;
@@ -20,24 +25,10 @@
 html {
     font-size: 62.5%;
 }
+
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Raleway", sans-serif;
     width: 100%;
     min-height: 100vh;
     background-color: var(--bg-1);
 }
-* {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* custom utility classes */
-.container {
-    min-width: 32rem;
-    max-width: 120rem;
-    padding-right: 1.6rem;
-    padding-left: 1.6rem;
-    margin-top: 1rem;
-    margin-right: auto;
-    margin-left: auto;
-    overflow: hidden;
-  }

@@ -6,8 +6,27 @@
   padding: 0 16px;
   margin: 1.2rem auto 0 auto;
 }
-.appHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+.header {
+  min-width: 32rem;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: .1rem solid #ededed;
+
+  img {
+    width: 38px;
+    object-fit: cover;
+  }
+}
+
+.footer {
+  min-width: 32rem;
+  padding: 4rem 0 14rem;
+  background-color: #f2f2f2;
+  border-top: .2rem solid #d1d1d1;
+  .heading {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 65%;
+  }
 }
