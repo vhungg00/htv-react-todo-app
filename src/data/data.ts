@@ -1,44 +1,44 @@
-import { iconLogoOls } from '@/assets/images';
+import { iconLogo } from '@/assets/images';
 
 export const PRIZES = [
   {
     name: 'Bộ trà',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 1 // 1%
   },
   {
     name: 'E-Voucher 100k',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 10 // 10%
   },
   {
     name: '100 điểm',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 20 // 20%
   },
   {
     name: 'Lượt chơi',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 80 // 50%
   },
   {
     name: 'Bộ chén',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 1 // 1%
   },
   {
     name: 'E-Voucher 50k',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 40 // 40%
   },
   {
     name: '10 điểm',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 60 // 60%
   },
   {
     name: 'Lượt chơi',
-    img: iconLogoOls,
+    img: iconLogo,
     percentpage: 60 // 60%
   }
 ]

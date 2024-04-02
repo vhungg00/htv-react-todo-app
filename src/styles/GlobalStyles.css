@@ -11,7 +11,8 @@
 }
 
 :root {
-    --primaryPurple: #646ff0;
+    --primaryBlue: #6caddf;
+    --secondBlue: #3bd6ff;
     --black-1: #646681;
     --black-2: #585858;
     --bg-1: #f8f8ff;

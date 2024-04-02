@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 
-import { ScrollToTop } from './component/ScrollToTop';
-import { AppHeader } from './component/AppHeader';
+import { ScrollToTop } from './components/ScrollToTop';
+import { AppHeader } from './components/AppHeader';
 import { ScreenUrlPath } from './typing/ScreenUrlPath';
-import { AppFooter } from './component/AppFooter';
+import { AppFooter } from './components/AppFooter';
 
 const Home = loadable(() => import('@/pages/Home'), {
     resolveComponent: (components) => components.Home
@@ -15,11 +15,13 @@ const LuckyGame = loadable(() => import('@/pages/LuckyWheelGame'), {
     resolveComponent: (components) => components.LuckyWheelGame
 });
 
-const FormMultiple = loadable(() => import('@/component/FormWithMultipleSteps'), {
+const FormMultiple = loadable(() => import('@/components/FormWithMultipleSteps'), {
     resolveComponent: (components) => components.FormWithMultipleSteps
 });
 
-const PageNotFound = loadable(() => import('@/component/404'));
+const Partners = loadable(() => import('@/components/PartnersSection'))
+
+const PageNotFound = loadable(() => import('@/components/404'));
 
 const App: React.FC = () => {
     return (
@@ -33,6 +35,7 @@ const App: React.FC = () => {
                     <Route path={ScreenUrlPath.FormWithMultipleSteps} element={<FormMultiple />} />
                     <Route path='*' element={<PageNotFound />} />
                 </Routes>
+                <Partners />
                 <AppFooter />
             </Router>
         </div>

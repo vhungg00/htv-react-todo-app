@@ -1,5 +1,5 @@
 import React from "react";
-import {Image} from "@/component/Image";
+import {Image} from "@/components/Image";
 
 export type Props = {
     imagePath: string,

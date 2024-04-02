@@ -30,3 +30,48 @@
     font-size: 82.5%;
   }
 }
+
+.errorText {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0 16px 0;
+  font-size: 13px;
+  color: #ff0800;
+}
+
+.partners {
+  position: relative;
+  min-width: 32rem;
+  padding: 24px 7%;
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    background-size: 5px 5px;
+    background-image: url('../../assets/images/backgroupFooter.png');
+  }
+}
+
+.partnersList {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.partnerItem {
+  list-style-type: none;
+  a{
+    display: block;
+    color: #001838;
+  }
+  a > img {
+    opacity: 1;
+  }
+}
