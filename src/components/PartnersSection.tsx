@@ -8,7 +8,7 @@ const PartnersSection: React.FC = () => (
     <div className={styles.partners}>
         <ul className={styles.partnersList}>
             <li className={styles.partnerItem}>
-                <a href="https://eu.puma.com/uk/en/home" target="_blank">
+                <a href="https://eu.puma.com/uk/en/home" rel="noreferer">
                     <img src={iconPartnerPuma} alt="icon-partner-puma" />
                 </a>
             </li>
