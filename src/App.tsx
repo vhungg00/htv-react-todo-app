@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 
-import { ScrollToTop } from './components/ScrollToTop';
+// import { ScrollToTop } from './components/ScrollToTop';
 import { AppHeader } from './components/AppHeader';
 import { ScreenUrlPath } from './typing/ScreenUrlPath';
 import { AppFooter } from './components/AppFooter';
+import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 
 const Home = loadable(() => import('@/pages/Home'), {
     resolveComponent: (components) => components.Home
@@ -28,7 +29,7 @@ const App: React.FC = () => {
         <div>
             <Router>
                 <AppHeader />
-                <ScrollToTop />
+                {/* <ScrollToTop /> */}
                 <Routes>
                     <Route path={ScreenUrlPath.Root} element={<Home />} />
                     <Route path={ScreenUrlPath.LuckyWheelGame} element={<LuckyGame />} />
@@ -37,6 +38,7 @@ const App: React.FC = () => {
                 </Routes>
                 <Partners />
                 <AppFooter />
+                <ScrollToTop scrollY={300} />
             </Router>
         </div>
     );

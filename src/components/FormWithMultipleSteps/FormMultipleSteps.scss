@@ -6,10 +6,6 @@
   min-width: 300px;
 }
 
-.tab {
-  display: none;
-}
-
 h1 {
   text-align: center;
   font-size: 30px;
@@ -58,14 +54,10 @@ label {
   }
 }
 
-
 .actions {
   overflow: auto;
   &-box {
     float: right;
-    button:first-child {
-      background-color: #bbbbbb;
-    }
   }
   button {
     background-color: var(--secondBlue);
@@ -82,6 +74,10 @@ label {
   button + button {
     margin-left: 4px;
   }
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
 }
 
 /* Make circles that indicate the steps of the form: */

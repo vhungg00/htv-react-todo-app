@@ -7,5 +7,6 @@ export interface TodoType {
 
 export type HandleStepChangeType = (
   a: number | null,
-  b?: null | number
+  b?: null | number,
+  c?: number,
 ) => void;

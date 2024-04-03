@@ -10,7 +10,7 @@ export const Home: React.FC = () => {
             <title>Home</title>
         </Helmet>
         <Container>
-            <p>Home</p>
+            <p style={{height: '1000px'}}>Home</p>
         </Container>
     </>
     )

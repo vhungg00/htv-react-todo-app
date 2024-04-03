@@ -9,11 +9,14 @@ export const useCurrentStep = () => {
   };
 
   const handleStepChange = useCallback<HandleStepChangeType>(
-    (stepChange, goToStep = null) => {
+    (stepChange, goToStep = null, total) => {
       typeof goToStep === "number"
         ? setCurrentStep(goToStep)
         : typeof stepChange === "number" &&
-          setCurrentStep((currentStep) => currentStep + stepChange);
+          setCurrentStep((currentStep) => {
+            if(currentStep === total) return currentStep;
+            return currentStep + stepChange
+          });
     },
     []
   );
