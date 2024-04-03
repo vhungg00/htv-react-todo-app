@@ -83,17 +83,5 @@ label {
 /* Make circles that indicate the steps of the form: */
 
 .steps-box {
-  text-align: center;
   margin-top: 24px;
-}
-
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
 }

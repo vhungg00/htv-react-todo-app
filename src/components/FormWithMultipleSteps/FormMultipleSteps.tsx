@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm, SubmitHandler, useFormState } from "react-hook-form";
+import Steps from "rc-steps";
+import "rc-steps/assets/index.css";
 
 import { Container } from "@/components/Container";
 import { ErrorInput } from "@/components/ErrorInput";
 
 import "./FormMultipleSteps.scss";
 import { useCurrentStep } from "@/hooks/useCurrentStep";
+import { ReturnLink } from "../ReturnLink";
 
 export type FormRegister = {
   fname: string;
@@ -46,7 +49,7 @@ export const FormWithMultipleSteps: React.FC = () => {
 
   const goNext: SubmitHandler<FormRegister> = useCallback((data) => {
     console.log(data);
-    handleStepChange(1, null, 3);
+    handleStepChange(1, null, 2);
   }, []);
 
   return (
@@ -55,9 +58,10 @@ export const FormWithMultipleSteps: React.FC = () => {
         <title>Form with multiple steps</title>
       </Helmet>
       <Container>
+        <ReturnLink />
         <form id="regForm" onSubmit={handleSubmit(goNext)}>
           <h1 className="heading">Register</h1>
-          {currentStep === 1 && (
+          {currentStep === 0 && (
             <div className="tab">
               Name:
               <dl className="form-group">
@@ -105,7 +109,7 @@ export const FormWithMultipleSteps: React.FC = () => {
             </div>
           )}
 
-          {currentStep === 2 && (
+          {currentStep === 1 && (
             <div className="tab">
               Contact Info:
               <dl className="form-group">
@@ -153,9 +157,9 @@ export const FormWithMultipleSteps: React.FC = () => {
             </div>
           )}
 
-          {currentStep === 3 && (
+          {currentStep === 2 && (
             <div className="tab">
-              Contact Info:
+              Login Info:
               <dl className="form-group">
                 <dt className="form-label">User name</dt>
                 <dd className="form-control">
@@ -177,7 +181,6 @@ export const FormWithMultipleSteps: React.FC = () => {
                 </dd>
               </dl>
               {errors[unameId] && <ErrorInput errors={errors[unameId]} />}
-
               <dl className="form-group">
                 <dt className="form-label">Password</dt>
                 <dd className="form-control">
@@ -204,7 +207,7 @@ export const FormWithMultipleSteps: React.FC = () => {
 
           <div className="actions">
             <div className="actions-box">
-              {currentStep === 1 ? (
+              {currentStep === 0 ? (
                 ""
               ) : (
                 <button
@@ -216,17 +219,21 @@ export const FormWithMultipleSteps: React.FC = () => {
                 </button>
               )}
               <button type="submit" id="nextBtn">
-                Next
+                {currentStep === 2 ? "Submit" : "Next"}
               </button>
             </div>
           </div>
 
           {/* <!-- Circles which indicates the steps of the form: --> */}
           <div className="steps-box">
-            <span className="step"></span>
-            <span className="step"></span>
-            <span className="step"></span>
-            <span className="step"></span>
+            <Steps
+              current={currentStep}
+              items={[
+                { title: "Name" },
+                { title: "Contact Info" },
+                { title: "Login Info" },
+              ]}
+            />
           </div>
         </form>
       </Container>
