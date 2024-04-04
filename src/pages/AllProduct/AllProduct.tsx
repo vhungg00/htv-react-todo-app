@@ -10,7 +10,7 @@ export const AllProduct: React.FC = () => {
         <title> Tất cả sản phẩm</title>
       </Helmet>
       <Container>
-        <Breadcrumb hasDisplayHome />
+        <Breadcrumb hasDisplayHome title="Tất cả sản phẩm"/>
       </Container>
     </>
   );

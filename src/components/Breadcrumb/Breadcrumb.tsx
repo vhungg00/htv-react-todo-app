@@ -3,6 +3,8 @@ import React from "react";
 import { Container } from "../Container";
 import { ScreenUrlPath } from "@/typing/ScreenUrlPath";
 
+import "./breadcrumb.scss";
+
 export type BreadcrumbProps = {
   hasDisplayHome?: boolean;
   hasDisplayAllPrd?: boolean;
@@ -20,7 +22,12 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
 }) => {
   return (
     <Container>
-      <nav aria-label={["breadcrumb", `${className && className}`].join(" ")}>
+      <nav
+        className={[
+          "breadcrumb",
+          `${className ? "breadcrumbActive" : ""}`,
+        ].join(" ")}
+      >
         <ol className="breadcrumb__list">
           {hasDisplayHome && (
             <li className="breadcrumb__list-item">
@@ -34,7 +41,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
           )}
           {title && (
             <li className="breadcrumb__list-item">
-              <span>{title}</span>
+              <Link to={'#'}>{title}</Link>
             </li>
           )}
         </ol>
