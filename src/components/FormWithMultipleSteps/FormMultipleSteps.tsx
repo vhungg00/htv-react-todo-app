@@ -219,7 +219,7 @@ export const FormWithMultipleSteps: React.FC = () => {
                 </button>
               )}
               <button type="submit" id="nextBtn">
-                {currentStep === 2 ? "Submit" : "Next"}
+                {currentStep === 2 && isValid ? "Submit" : "Next"}
               </button>
             </div>
           </div>

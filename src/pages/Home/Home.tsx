@@ -29,7 +29,7 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        <p id={accessory} style={{ height: "1000px" }}>
+        <p id={accessory}>
           Home
         </p>
       </Container>

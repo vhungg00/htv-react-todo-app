@@ -20,6 +20,10 @@ const FormMultiple = loadable(() => import('@/components/FormWithMultipleSteps')
     resolveComponent: (components) => components.FormWithMultipleSteps
 });
 
+const AllProduct = loadable(() => import('@/pages/AllProduct'), {
+    resolveComponent: (components) => components.AllProduct
+});
+
 const Partners = loadable(() => import('@/components/PartnersSection'))
 
 const PageNotFound = loadable(() => import('@/components/404'));
@@ -34,6 +38,7 @@ const App: React.FC = () => {
                     <Route path={ScreenUrlPath.Root} element={<Home />} />
                     <Route path={ScreenUrlPath.LuckyWheelGame} element={<LuckyGame />} />
                     <Route path={ScreenUrlPath.FormWithMultipleSteps} element={<FormMultiple />} />
+                    <Route path={ScreenUrlPath.AllProduct} element={<AllProduct />} />
                     <Route path='*' element={<PageNotFound />} />
                 </Routes>
                 <Partners />
