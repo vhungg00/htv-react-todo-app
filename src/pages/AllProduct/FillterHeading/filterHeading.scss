@@ -1,0 +1,27 @@
+.symbolButton {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.symbolButton__inner {
+  text-align: end;
+}
+
+.filter-label {
+  color: var(--black-1);
+  span {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 16px;
+  }
+}
+
+.chevron-down__svg {
+  margin-top: 4px;
+  transition: transform 0.5s ease 0s;
+  vertical-align: top;
+}
+
+.chevron-down__svg.active {
+  transform: rotateX(180deg);
+}

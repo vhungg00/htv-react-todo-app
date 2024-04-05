@@ -10,7 +10,7 @@ export const SimpleSlider: React.FC = () => {
         dots: true,
         infinite: true,
         centerPadding: '1000px',
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
     };

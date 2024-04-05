@@ -29,9 +29,7 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        <p id={accessory}>
-          Home
-        </p>
+        <p id={accessory}>Home</p>
       </Container>
     </>
   );
