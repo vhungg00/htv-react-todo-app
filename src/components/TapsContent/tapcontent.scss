@@ -1,4 +1,43 @@
+.tabs {
+  border: 1px solid #8c8c8c;
+  border-top: unset;
+  border-bottom: 4px solid #8c8c8c;
+  border-radius: 6px;
+}
+
 .tab-list {
-    display: flex;
-    font-size: 16px;
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: #8c8c8c;
+}
+
+.tab {
+  padding: 10px;
+  font-size: 12px;
+  color: #121212;
+  font-weight: bold;
+  background-color: #f2f2f2;
+  border-top: 1px solid #8c8c8c;
+  border-left: 1px solid #8c8c8c;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.tab:first-of-type {
+  border-left: none;
+}
+
+.tab.tab-fullWidth {
+  flex: 1 1;
+  flex-shrink: 1;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.selected--tab {
+  border-top: 1px solid #8c8c8c;
+  border-bottom: 2px solid #fff;
+  background-color: #fff;
+  margin-bottom: -2px;
 }

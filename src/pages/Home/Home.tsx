@@ -31,19 +31,30 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        <Tabs selectedClassName="style">
+        <Tabs defaultIndex={2} variant="fullWidth">
           <TabList>
-            <Tab className="tab-style">Tab 1</Tab>
-            <Tab>Tab 2</Tab>
-            <Tab>Tab 5</Tab>
-            <Tab>Tab 4</Tab>
+            <Tab>おトクにマネ活</Tab>
+            <Tab>データ使い放題</Tab>
+            <Tab>使う分だけ</Tab>
           </TabList>
-          <TabPanel>1</TabPanel>
-          <TabPanel>2</TabPanel>
-          <TabPanel>3</TabPanel>
-          <TabPanel>4</TabPanel>
+
+          <TabPanel>
+            <p style={{ marginTop: "10px" }}></p>
+
+            <h1>section1</h1>
+          </TabPanel>
+          <TabPanel>
+            <p style={{ marginTop: "10px" }}></p>
+
+            <h1>section2</h1>
+          </TabPanel>
+          <TabPanel>
+            <p style={{ marginTop: "10px" }}></p>
+
+            <h1>section3</h1>
+          </TabPanel>
         </Tabs>
-        
+
         <p id={accessory}>Home</p>
       </Container>
     </>

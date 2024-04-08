@@ -1,22 +1,38 @@
 import React from "react";
 
-import './tapcontent.scss';
+import "./tapcontent.scss";
+import { TabElements } from "./Tabs";
 
-const Tab: React.FC<{
+type TabProps = {
   role?: string;
+  index?: string;
+  isSelected?: boolean;
   className?: string;
   children: React.ReactNode;
-  index?: string;
-}> = ({ role, className, children, index, ...props }) => {
+};
+
+export const Tab: React.FC<TabProps> = ({
+  role,
+  index,
+  isSelected = false,
+  className,
+  children,
+  ...rest
+}) => {
   return (
-    <li className={["tab", className].join(" ")} id={index} {...props}>
+    <button
+      id={`tab-${index}`}
+      className={["tab", className].join("")}
+      role="tab"
+      aria-selected={isSelected ? "true" : "false"}
+      data-rttab
+      {...rest}
+    >
       {children}
-    </li>
+    </button>
   );
 };
 
 Tab.defaultProps = {
-  role: "tab",
+  role: TabElements.tab,
 };
-
-export { Tab };

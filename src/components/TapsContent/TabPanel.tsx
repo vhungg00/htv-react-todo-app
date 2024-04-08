@@ -1,6 +1,8 @@
-import React, { FC, HTMLAttributes } from "react";
+import React from "react";
 
-const TabPanel: FC<{
+import { TabElements } from "./Tabs";
+
+const TabPanel: React.FC<{
   role?: string;
   children: React.ReactNode;
   className?: string;
@@ -19,7 +21,7 @@ const TabPanel: FC<{
 };
 
 TabPanel.defaultProps = {
-  role: "tabPanel",
+  role: TabElements.tabPanel,
 };
 
 export { TabPanel };

@@ -1,5 +1,7 @@
 import React, { HTMLAttributes } from "react";
 
+import { TabElements } from "./Tabs";
+
 import "./tapcontent.scss";
 
 export const TabList: React.FC<HTMLAttributes<HTMLDivElement>> = ({
@@ -9,12 +11,12 @@ export const TabList: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => {
   return (
-    <div className={["tab-list", className].join(" ")} {...rest}>
+    <div role="tab-list" className={["tab-list", className].join(" ")} {...rest}>
       {children}
     </div>
   );
 };
 
 TabList.defaultProps = {
-  role: "tablist",
+  role: TabElements.tabList,
 };
