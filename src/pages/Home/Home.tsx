@@ -31,27 +31,80 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        <Tabs defaultIndex={2} variant="fullWidth">
+        <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
             <Tab>おトクにマネ活</Tab>
             <Tab>データ使い放題</Tab>
-            <Tab>使う分だけ</Tab>
+            <Tab>使う分だけ クに 使う分だけ ク</Tab>
           </TabList>
 
           <TabPanel>
-            <p style={{ marginTop: "10px" }}></p>
+            <div style={{ padding: "10px" }}>
+              <Tabs defaultIndex={0} align="end">
+                <TabList>
+                  <Tab>おトクにマネ活</Tab>
+                  <Tab>データ使い放題</Tab>
+                  <Tab>使う分だけ</Tab>
+                </TabList>
 
+                <TabPanel>
+                  <h1>section1</h1>
+                </TabPanel>
+                <TabPanel>
+                  <h1>section2</h1>
+                </TabPanel>
+                <TabPanel>
+                  <h1>section3</h1>
+                </TabPanel>
+              </Tabs>
+            </div>
             <h1>section1</h1>
           </TabPanel>
           <TabPanel>
-            <p style={{ marginTop: "10px" }}></p>
-
             <h1>section2</h1>
           </TabPanel>
           <TabPanel>
-            <p style={{ marginTop: "10px" }}></p>
-
             <h1>section3</h1>
+            <div style={{ padding: "10px" }}>
+              <Tabs defaultIndex={0} align="end">
+                <TabList>
+                  <Tab>おトクにマネ活</Tab>
+                  <Tab>データ使い放題</Tab>
+                  <Tab>使う分だけ</Tab>
+                </TabList>
+
+                <TabPanel>
+                  <h1>section1</h1>
+                </TabPanel>
+                <TabPanel>
+                  <h1>section2</h1>
+                </TabPanel>
+                <TabPanel>
+                <div style={{padding: '10px'}}>
+              <Tabs defaultIndex={0} align="end">
+                <TabList>
+                  <Tab>おトクにマネ活</Tab>
+                  <Tab>データ使い放題</Tab>
+                  <Tab>使う分だけ</Tab>
+                </TabList>
+              
+                <TabPanel>
+              
+                  <h1>section1</h1>
+                </TabPanel>
+                <TabPanel>
+              
+                  <h1>section2</h1>
+                </TabPanel>
+                <TabPanel>
+              
+                  <h1>section3</h1>
+                </TabPanel>
+              </Tabs>
+            </div>
+                </TabPanel>
+              </Tabs>
+            </div>
           </TabPanel>
         </Tabs>
 

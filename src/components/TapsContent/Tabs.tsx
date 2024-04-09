@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { Variant } from "./getTabsStyle";
+import { Align, Variant } from "./getTabsStyle";
 
 import { getTabsStyle } from "./getTabsStyle";
 
 export type TabsProps = {
   defaultIndex?: number;
   variant?: Variant;
+  align?: Align;
   children: React.ReactNode;
 };
 
 export enum TabElements {
-  tabList = "tab-list",
-  tab = "tab-simple",
-  tabPanel = "tab-panel",
+  tabList = "tabList",
+  tab = "tab",
+  tabPanel = "tabPanel",
 }
 
 const INIT_CURRENT_INDEX = 0;
@@ -20,9 +21,11 @@ const INIT_CURRENT_INDEX = 0;
 export const Tabs: React.FC<TabsProps> = ({
   defaultIndex,
   variant = "standard",
+  align = "start",
   children,
+  ...rest
 }) => {
-  const tabsStyle = getTabsStyle(variant);
+  const tabsStyle = getTabsStyle(variant, align).join(" ");
   const initCurrentIndex = defaultIndex || INIT_CURRENT_INDEX;
   const [currentIndex, setCurrentIndex] = useState<number>(initCurrentIndex);
 
@@ -51,7 +54,7 @@ export const Tabs: React.FC<TabsProps> = ({
               });
             }
           }),
-          className: `tab-list__${tabsStyle}`,
+          className: tabsStyle,
         };
         return React.cloneElement(child, { ...props });
       }
@@ -67,5 +70,5 @@ export const Tabs: React.FC<TabsProps> = ({
     }
   });
 
-  return <div className={["tabs"].join(" ")}>{_children}</div>;
+  return <div className={["tabs"].join(" ")} {...rest}>{_children}</div>;
 };

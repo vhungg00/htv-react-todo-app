@@ -7,6 +7,7 @@ type TabProps = {
   role?: string;
   index?: string;
   isSelected?: boolean;
+  disabled?: boolean;
   className?: string;
   children: React.ReactNode;
 };
@@ -15,6 +16,7 @@ export const Tab: React.FC<TabProps> = ({
   role,
   index,
   isSelected = false,
+  disabled = false,
   className,
   children,
   ...rest
@@ -28,6 +30,8 @@ export const Tab: React.FC<TabProps> = ({
       type="button"
       aria-selected={isSelected ? "true" : "false"}
       aria-controls={`simple-tanpanel-${index}`}
+      aria-disabled={disabled}
+      disabled={disabled}
       {...rest}
     >
       {children}
