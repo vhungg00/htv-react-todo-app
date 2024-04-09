@@ -23,9 +23,8 @@ export const Tabs: React.FC<TabsProps> = ({
   children,
 }) => {
   const tabsStyle = getTabsStyle(variant);
-  const indexValue = defaultIndex || INIT_CURRENT_INDEX;
-
-  const [currentIndex, setCurrentIndex] = useState<number>(indexValue);
+  const initCurrentIndex = defaultIndex || INIT_CURRENT_INDEX;
+  const [currentIndex, setCurrentIndex] = useState<number>(initCurrentIndex);
 
   const _children = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
@@ -39,12 +38,12 @@ export const Tabs: React.FC<TabsProps> = ({
         const props = {
           children: React.Children.map(tabList, (tab, index) => {
             const isSelected = index === currentIndex;
-            console.log(tab.props.className);
             const selected = isSelected ? "selected--tab" : undefined;
             if (tab.props.role === TabElements.tab) {
+              const clasNameTab = tab.props.className
               return React.cloneElement(tab, {
-                index: index,
-                className: [tab.props.className, tabsStyle, selected].join(" "),
+                index,
+                className: [clasNameTab, tabsStyle, selected].join(" "),
                 isSelected: isSelected,
                 onClick: () => {
                   setCurrentIndex(index);
@@ -56,9 +55,11 @@ export const Tabs: React.FC<TabsProps> = ({
         };
         return React.cloneElement(child, { ...props });
       }
-      if (currentIndex + 1 === index && role === TabElements.tabPanel) {
+      const isTabpanelSelected = currentIndex + 1 === index;
+      if (isTabpanelSelected && role === TabElements.tabPanel) {
         const props = {
-          index: `tab-panel--${index}`,
+          index: index - 1,
+          isTabpanelSelected,
         };
         return React.cloneElement(child, { ...props });
       }
@@ -66,5 +67,5 @@ export const Tabs: React.FC<TabsProps> = ({
     }
   });
 
-  return <div role="tabs" className={["tabs"].join(" ")}>{_children}</div>;
+  return <div className={["tabs"].join(" ")}>{_children}</div>;
 };

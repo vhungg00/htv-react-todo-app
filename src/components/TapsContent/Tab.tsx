@@ -24,8 +24,10 @@ export const Tab: React.FC<TabProps> = ({
       id={`tab-${index}`}
       className={["tab", className].join("")}
       role="tab"
+      tabIndex={isSelected ? 0 : -1}
+      type="button"
       aria-selected={isSelected ? "true" : "false"}
-      data-rttab
+      aria-controls={`simple-tanpanel-${index}`}
       {...rest}
     >
       {children}

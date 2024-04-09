@@ -11,7 +11,7 @@ export const TabList: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => {
   return (
-    <div role="tab-list" className={["tab-list", className].join(" ")} {...rest}>
+    <div role="tablist" className={["tab-list", className].join(" ")} {...rest}>
       {children}
     </div>
   );

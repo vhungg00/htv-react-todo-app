@@ -4,15 +4,16 @@ import { TabElements } from "./Tabs";
 
 const TabPanel: React.FC<{
   role?: string;
-  children: React.ReactNode;
-  className?: string;
   index?: string;
-}> = ({ role, children, className, index, ...rest }) => {
+  isTabpanelSelected?: boolean;
+  children: React.ReactNode;
+}> = ({ role, index, isTabpanelSelected, children, ...rest }) => {
   return (
     <div
-      className={["tab-panel", className].join(" ")}
-      role="tab-panel"
-      aria-labelledby={index}
+      id={`simple-tanpanel-${index}`}
+      className={["tab-panel"].join(" ")}
+      role="tabPanel"
+      aria-labelledby={`tab-panel-${index}`}
       {...rest}
     >
       {children}
