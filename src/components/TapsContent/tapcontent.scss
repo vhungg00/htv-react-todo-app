@@ -29,6 +29,13 @@
   border-left: 1px solid #8c8c8c;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  cursor: pointer;
+}
+
+.tab[aria-disabled="true"] {
+  cursor: default;
+  pointer-events: none;
+  color: #ccc;
 }
 
 .tab:last-of-type {
@@ -59,4 +66,3 @@
 .tab-list.tab-align-end {
   justify-content: end;
 }
-
