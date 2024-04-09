@@ -5,7 +5,7 @@ import { TabElements } from "./Tabs";
 
 type TabProps = {
   role?: string;
-  index?: string;
+  index?: number;
   isSelected?: boolean;
   disabled?: boolean;
   className?: string;

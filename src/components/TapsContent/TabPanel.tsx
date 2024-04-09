@@ -4,7 +4,7 @@ import { TabElements } from "./Tabs";
 
 const TabPanel: React.FC<{
   role?: string;
-  index?: string;
+  index?: number;
   isTabpanelSelected?: boolean;
   children: React.ReactNode;
 }> = ({ role, index, isTabpanelSelected, children, ...rest }) => {
