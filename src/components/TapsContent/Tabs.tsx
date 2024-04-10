@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState, MouseEvent } from "react";
 import { Align, Variant } from "./getTabsStyle";
 
 import { getTabsStyle } from "./getTabsStyle";
@@ -29,34 +29,62 @@ export const Tabs: React.FC<TabsProps> = ({
   const initCurrentIndex = defaultIndex || INIT_CURRENT_INDEX;
   const [currentIndex, setCurrentIndex] = useState<number>(initCurrentIndex);
 
+  const cloneTab = useCallback(
+    (
+      tab: React.ReactElement,
+      index: number,
+      classes: string,
+      isSelected: boolean,
+      handleClick: () => void
+    ): React.ReactNode => {
+      return React.cloneElement(tab, {
+        index,
+        className: classes,
+        isSelected,
+        onClick: (e: MouseEvent<HTMLButtonElement>) => {
+          if (tab.props.onClick) {
+            tab.props.onClick(e);
+          }
+          handleClick();
+        },
+      });
+    },
+    [currentIndex]
+  );
+
+  const processTabList = useCallback(
+    (
+      tabList: React.ReactElement,
+      children: React.ReactElement
+    ): React.ReactNode => {
+      const props = {
+        children: React.Children.map(tabList, (tab, index) => {
+          const isSelected = index === currentIndex;
+          const selected = isSelected ? "selected--tab" : undefined;
+
+          if (tab.props.role === TabElements.tab) {
+            const classes = [tab.props.className, tabsStyle, selected].join(
+              " "
+            );
+            return cloneTab(tab, index, classes, isSelected, () =>
+              setCurrentIndex(index)
+            );
+          }
+          return tab;
+        }),
+        className: tabsStyle,
+      };
+      return React.cloneElement(children, { ...props });
+    },
+    [currentIndex, setCurrentIndex]
+  );
+
   const _children = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
-      // Get role on child element
       const role = child.props.role;
-
       if (role === TabElements.tabList) {
-        // get tabList on child element
         const tabList = child.props.children;
-
-        const props = {
-          children: React.Children.map(tabList, (tab, index) => {
-            const isSelected = index === currentIndex;
-            const selected = isSelected ? "selected--tab" : undefined;
-            if (tab.props.role === TabElements.tab) {
-              const clasNameTab = tab.props.className
-              return React.cloneElement(tab, {
-                index,
-                className: [clasNameTab, tabsStyle, selected].join(" "),
-                isSelected: isSelected,
-                onClick: () => {
-                  setCurrentIndex(index);
-                },
-              });
-            }
-          }),
-          className: tabsStyle,
-        };
-        return React.cloneElement(child, { ...props });
+        return processTabList(tabList, child);
       }
       const isTabpanelSelected = currentIndex + 1 === index;
       if (isTabpanelSelected && role === TabElements.tabPanel) {
@@ -70,5 +98,9 @@ export const Tabs: React.FC<TabsProps> = ({
     }
   });
 
-  return <div className={["tabs"].join(" ")} {...rest}>{_children}</div>;
+  return (
+    <div className="tabs" {...rest}>
+      {_children}
+    </div>
+  );
 };

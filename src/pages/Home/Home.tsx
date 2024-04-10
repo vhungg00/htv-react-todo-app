@@ -33,7 +33,7 @@ export const Home: React.FC = () => {
       <Container>
         <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
-            <Tab>おトクにマネ活</Tab>
+            <Tab disabled>おトクにマネ活</Tab>
             <Tab>データ使い放題</Tab>
             <Tab>使う分だけ クに 使う分だけ ク</Tab>
           </TabList>
@@ -69,7 +69,7 @@ export const Home: React.FC = () => {
               <Tabs defaultIndex={0} align="end">
                 <TabList>
                   <Tab>おトクにマネ活</Tab>
-                  <Tab>データ使い放題</Tab>
+                  <Tab>データ使い放題 データ使い放題 データ使い放題 データ使い放題 データ使い放題</Tab>
                   <Tab>使う分だけ</Tab>
                 </TabList>
 
@@ -86,6 +86,7 @@ export const Home: React.FC = () => {
                   <Tab>おトクにマネ活</Tab>
                   <Tab>データ使い放題</Tab>
                   <Tab>使う分だけ</Tab>
+                  <Tab>使う分だけ 使う分だけ使う分だけ</Tab>
                 </TabList>
               
                 <TabPanel>
