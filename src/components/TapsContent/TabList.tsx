@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import React, { HTMLAttributes, HTMLProps } from "react";
 
 import { TabElements } from "./Tabs";
 

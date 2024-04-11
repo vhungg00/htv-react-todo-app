@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 
@@ -7,6 +7,12 @@ import { AppHeader } from './components/AppHeader';
 import { ScreenUrlPath } from './typing/ScreenUrlPath';
 import { AppFooter } from './components/AppFooter';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
+
+// useEffect(() => {
+//     const rootModalElement = document.createElement("div");
+//     rootModalElement.setAttribute("id", "rootModal");
+//     document.body.appendChild(rootModalElement);
+// },[])
 
 const Home = loadable(() => import('@/pages/Home'), {
     resolveComponent: (components) => components.Home

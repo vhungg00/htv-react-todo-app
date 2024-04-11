@@ -3,13 +3,16 @@ import { Helmet } from "react-helmet-async";
 import smoothScrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import { Container } from "@/components/Container";
+import { ModalPortal, ModalContainer } from "@/Modal";
 
 import { Tabs, TabList, Tab, TabPanel } from "@/components/TapsContent";
+import { Button } from "@/components/Button";
 
 const accessory = "accessory";
 
 export const Home: React.FC = () => {
   const [addGoodsCompleted, setAddGoodsCompleted] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (addGoodsCompleted) {
@@ -24,6 +27,9 @@ export const Home: React.FC = () => {
       setAddGoodsCompleted(false);
     }
   }, [addGoodsCompleted]);
+  const onClose = () => {
+    setIsOpenModal(false);
+  }
 
   return (
     <>
@@ -31,6 +37,15 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
+        <h1>Modal
+          <Button onClick={() => setIsOpenModal(!isOpenModal)}>Open modal</Button>
+        </h1>
+        <ModalPortal isDisplay={isOpenModal}>
+          <ModalContainer onClickBackdrop={onClose}>
+            <h2></h2>
+          </ModalContainer>
+        </ModalPortal>
+
         <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
             <Tab disabled>おトクにマネ活</Tab>
@@ -69,7 +84,10 @@ export const Home: React.FC = () => {
               <Tabs defaultIndex={0} align="end">
                 <TabList>
                   <Tab>おトクにマネ活</Tab>
-                  <Tab>データ使い放題 データ使い放題 データ使い放題 データ使い放題 データ使い放題</Tab>
+                  <Tab>
+                    データ使い放題 データ使い放題 データ使い放題 データ使い放題
+                    データ使い放題
+                  </Tab>
                   <Tab>使う分だけ</Tab>
                 </TabList>
 
@@ -80,34 +98,32 @@ export const Home: React.FC = () => {
                   <h1>section2</h1>
                 </TabPanel>
                 <TabPanel>
-                <div style={{padding: '10px'}}>
-              <Tabs defaultIndex={0} align="end">
-                <TabList>
-                  <Tab>おトクにマネ活</Tab>
-                  <Tab>データ使い放題</Tab>
-                  <Tab>使う分だけ</Tab>
-                  <Tab>使う分だけ 使う分だけ使う分だけ</Tab>
-                </TabList>
-              
-                <TabPanel>
-              
-                  <h1>section1</h1>
-                </TabPanel>
-                <TabPanel>
-              
-                  <h1>section2</h1>
-                </TabPanel>
-                <TabPanel>
-              
-                  <h1>section3</h1>
-                </TabPanel>
-              </Tabs>
-            </div>
+                  <div style={{ padding: "10px" }}>
+                    <Tabs defaultIndex={0} align="end">
+                      <TabList>
+                        <Tab>おトクにマネ活</Tab>
+                        <Tab>データ使い放題</Tab>
+                        <Tab>使う分だけ</Tab>
+                        <Tab>使う分だけ 使う分だけ使う分だけ</Tab>
+                      </TabList>
+
+                      <TabPanel>
+                        <h1>section1</h1>
+                      </TabPanel>
+                      <TabPanel>
+                        <h1>section2</h1>
+                      </TabPanel>
+                      <TabPanel>
+                        <h1>section3</h1>
+                      </TabPanel>
+                    </Tabs>
+                  </div>
                 </TabPanel>
               </Tabs>
             </div>
           </TabPanel>
         </Tabs>
+        <p style={{height: '120vh'}}></p>
 
         <p id={accessory}>Home</p>
       </Container>
