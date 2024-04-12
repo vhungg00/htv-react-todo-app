@@ -1,0 +1,34 @@
+* {
+    --light-7: #aaa;
+}
+.icon {
+    font-size: 60px;
+    color: #1A2B57;
+}
+
+.wrapper__luckywheel {
+    position: relative;
+    width: 580px;
+    height: 580px;
+    border-radius: 50%0;
+    background-color: var(--light-7);
+    box-shadow: 0px 0px 5px 2px var(--light-7);
+}
+
+.luckywheel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 580px;
+    height: 580px;
+    border-radius: inherit;
+    background-clip: padding-box;
+    -webkit-transition: transform 6s ease;
+    transition: transform 6s ease;
+    & canvas {
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+    }
+}

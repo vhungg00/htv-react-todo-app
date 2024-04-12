@@ -1,0 +1,87 @@
+#regForm {
+  background-color: #ffffff;
+  margin: 0 auto;
+  font-family: Raleway;
+  padding: 40px;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+div {
+  font-size: 16px;
+}
+
+.form-group {
+  display: block;
+  width: 100%;
+}
+
+.form-label {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 1.6rem;
+}
+
+.input-control {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+  outline: none;
+  &::placeholder {
+    color: #d1d1d1;
+  }
+  &[data-complete="true"] {
+    background: #ffffff;
+    border: 1px solid var(--primaryBlue);
+    box-shadow: none;
+  }
+  &[data-error="true"] {
+    background: #ffdddd;
+    border: 2px solid #ff0800;
+    box-shadow: none;
+  }
+}
+
+.actions {
+  overflow: auto;
+  &-box {
+    float: right;
+  }
+  button {
+    background-color: var(--secondBlue);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  button + button {
+    margin-left: 4px;
+  }
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+
+.steps-box {
+  margin-top: 24px;
+}

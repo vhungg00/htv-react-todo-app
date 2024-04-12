@@ -5,20 +5,27 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {HelmetProvider} from "react-helmet-async";
 import {Provider} from 'react-redux';
-import '@fontsource/poppins';
-import '@fontsource/poppins/500.css';
-import '@fontsource/poppins/600.css';
-import '@fontsource/poppins/700.css';
+import {ThemeProvider} from '@/context/ThemeProvider';
+import "@fontsource/raleway";
+import '@fontsource/raleway/300.css';
+import '@fontsource/raleway/500.css';
+import '@fontsource/raleway/600.css';
+import '@fontsource/raleway/700.css';
+import '@fontsource/raleway/800.css';
 import './styles/GlobalStyles.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {store} from './store';
 
 ReactDOM.render(
     <React.StrictMode>
-        <HelmetProvider>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </HelmetProvider>
+        <ThemeProvider>
+            <HelmetProvider>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+            </HelmetProvider>
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 )
