@@ -5,6 +5,7 @@ import smoothScrollIntoView from "smooth-scroll-into-view-if-needed";
 import { Container } from "@/components/Container";
 
 import { Tabs, TabList, Tab, TabPanel } from "@/components/TapsContent";
+import { StepItem, Steps } from "@/components/Steps";
 
 const accessory = "accessory";
 
@@ -31,6 +32,14 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
+
+        <Steps currentIndex={1}>
+          <StepItem>contractType</StepItem>
+          <StepItem>Select phone number</StepItem>
+          <StepItem>Select Acessory</StepItem>
+          <StepItem>Estimate</StepItem>
+        </Steps>
+
         <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
             <Tab disabled>おトクにマネ活</Tab>
