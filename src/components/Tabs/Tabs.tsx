@@ -9,8 +9,8 @@ type TabsProps = {
   children: ReactElement[];
 };
 
-export const Tabs: React.FC<TabsProps> = ({ defaultIndex, variant="standard", align, children }) => {
-  const [selectedTab, setSelectedTab] = useState<number>(defaultIndex || 0);
+export const Tabs: React.FC<TabsProps> = ({ defaultIndex = 0, variant="standard", align, children }) => {
+  const [selectedTab, setSelectedTab] = useState<number>(defaultIndex);
   const tabsStyle = getTabsStyle(variant, align).join(" ");
   const handleSelectedTab = useCallback((index: number) => {
     setSelectedTab(index)}, [setSelectedTab]);

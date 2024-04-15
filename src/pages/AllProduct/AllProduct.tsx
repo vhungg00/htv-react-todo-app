@@ -16,7 +16,7 @@ export const AllProduct: React.FC = () => {
       </Helmet>
       <Container>
         <Tabs variant="fullWidth">
-          <Tab disabled title="使う分だけ クに 使う分だけ ク1">lemon1
+          <Tab title="使う分だけ クに 使う分だけ ク1">lemon1
             <h1>Tabpanel</h1>
             <div style={{height: '100px'}}></div>
           </Tab>
