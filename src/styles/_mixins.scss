@@ -4,8 +4,14 @@
   }
 }
 
-@mixin smallDeviceSize {
-  @media only screen and (max-width: 768px) {
+@mixin mediumDeviceSize {
+  @media only screen and (min-width: 390px) {
+    @content;
+  }
+}
+
+@mixin largeDeviceSize {
+  @media only screen and (min-width: 768px) {
     @content;
   }
 }

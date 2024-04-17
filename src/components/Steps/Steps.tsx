@@ -15,7 +15,8 @@ export const Steps: React.FC<StepsProps> = ({ currentIndex, children }) => {
         if (React.isValidElement(child)) {
           const last = length - 1 === index;
           const stepNumber: number = index + 1;
-          const props = { index, last, currentIndex: curr, stepNumber };
+          const isStepItemActive = index === currentIndex;
+          const props = { index, last, currentIndex: curr, stepNumber, isStepItemActive };
           return React.cloneElement(child, { ...props });
         }
         return child;
