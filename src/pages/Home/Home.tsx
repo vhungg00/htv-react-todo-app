@@ -6,6 +6,8 @@ import { Container } from "@/components/Container";
 
 import { Tabs, TabList, Tab, TabPanel } from "@/components/TapsContent";
 import { StepItem, Steps } from "@/components/Steps";
+import { Checkbox } from "@/components/Checkbox";
+import { useForm } from "react-hook-form";
 
 const accessory = "accessory";
 
@@ -32,7 +34,13 @@ export const Home: React.FC = () => {
     "Select phone number",
     "Select Acessory",
     "Estimate",
+    "Payment",
+    "Complete"
   ];
+  type Input = {
+    checkbox: string
+  }
+  const { register } = useForm<Input>();
 
   return (
     <>
@@ -40,6 +48,7 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
+        <Checkbox name="name" value="hoa" register={register("checkbox")} />
         <Steps currentIndex={changeStep}>
           {steps.map((step, index) => 
             <StepItem key={index}>{step}</StepItem>
