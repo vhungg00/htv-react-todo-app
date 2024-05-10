@@ -8,8 +8,16 @@ import { Tabs, TabList, Tab, TabPanel } from "@/components/TapsContent";
 import { StepItem, Steps } from "@/components/Steps";
 import { Checkbox } from "@/components/Checkbox";
 import { useForm } from "react-hook-form";
+import { List } from "@/components/List";
+import { Row } from "@/components/Row";
 
 const accessory = "accessory";
+
+export const products = [
+  { title: "Cabbage", id: 1 },
+  { title: "Garlic", id: 2 },
+  { title: "Apple", id: 3 },
+];
 
 export const Home: React.FC = () => {
   const [addGoodsCompleted, setAddGoodsCompleted] = useState<boolean>(false);
@@ -35,11 +43,11 @@ export const Home: React.FC = () => {
     "Select Acessory",
     "Estimate",
     "Payment",
-    "Complete"
+    "Complete",
   ];
   type Input = {
-    checkbox: string
-  }
+    checkbox: string;
+  };
   const { register } = useForm<Input>();
 
   return (
@@ -50,10 +58,16 @@ export const Home: React.FC = () => {
       <Container>
         <Checkbox name="name" value="hoa" register={register("checkbox")} />
         <Steps currentIndex={changeStep}>
-          {steps.map((step, index) => 
+          {steps.map((step, index) => (
             <StepItem key={index}>{step}</StepItem>
-          )}
+          ))}
         </Steps>
+
+        <List>
+          {products.map((product) => (
+            <Row key={product.id} title={product.title}></Row>
+          ))}
+        </List>
 
         <>
           <ul

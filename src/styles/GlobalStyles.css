@@ -57,3 +57,7 @@ button {
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
 }
+
+@keyframes identifier {
+    
+}

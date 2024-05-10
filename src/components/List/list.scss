@@ -1,0 +1,21 @@
+.List {
+    list-style-type: none;
+    font-size: 14px;
+    padding: 10px;
+    border: #dedede solid 1px;
+}
+
+.LitsButton {
+    font-size: 14px;
+    padding: 10px;
+    border: #dedede solid 1px;
+    color: #ffffff;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--primaryBlue);
+    &:hover {
+        opacity: 0.8;
+        transition: linear .1s;
+    }
+}
