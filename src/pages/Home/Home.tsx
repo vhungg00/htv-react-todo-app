@@ -1,54 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import smoothScrollIntoView from "smooth-scroll-into-view-if-needed";
+import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
+import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed'
 
-import { Container } from "@/components/Container";
+import { Container } from '@/components/Container'
 
-import { Tabs, TabList, Tab, TabPanel } from "@/components/TapsContent";
-import { StepItem, Steps } from "@/components/Steps";
-import { Checkbox } from "@/components/Checkbox";
-import { useForm } from "react-hook-form";
-import { List } from "@/components/List";
-import { Row } from "@/components/Row";
+import { Tabs, TabList, Tab, TabPanel } from '@/components/TapsContent'
+import { StepItem, Steps } from '@/components/Steps'
+import { Checkbox } from '@/components/Checkbox'
+import { useForm } from 'react-hook-form'
+import { List } from '@/components/List'
+import { Row } from '@/components/Row'
+import { Tooltip } from '@/components/Tooltip/Tooltip'
 
-const accessory = "accessory";
+const accessory = 'accessory'
 
 export const products = [
-  { title: "Cabbage", id: 1 },
-  { title: "Garlic", id: 2 },
-  { title: "Apple", id: 3 },
-];
+  { title: 'Cabbage', id: 1 },
+  { title: 'Garlic', id: 2 },
+  { title: 'Apple', id: 3 },
+]
 
 export const Home: React.FC = () => {
-  const [addGoodsCompleted, setAddGoodsCompleted] = useState<boolean>(false);
-  const [changeStep, setChangeStep] = useState<number>(0);
+  const [addGoodsCompleted, setAddGoodsCompleted] = useState<boolean>(false)
+  const [changeStep, setChangeStep] = useState<number>(0)
 
   useEffect(() => {
     if (addGoodsCompleted) {
-      const element = document.getElementById(accessory);
+      const element = document.getElementById(accessory)
       if (element) {
-        if ("scrollBehavior" in document.documentElement.style) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        if ('scrollBehavior' in document.documentElement.style) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
-          smoothScrollIntoView(element, { behavior: "smooth", block: "start" });
+          smoothScrollIntoView(element, { behavior: 'smooth', block: 'start' })
         }
       }
-      setAddGoodsCompleted(false);
+      setAddGoodsCompleted(false)
     }
-  }, [addGoodsCompleted]);
+  }, [addGoodsCompleted])
 
   const steps: string[] = [
-    "contractType",
-    "Select phone number",
-    "Select Acessory",
-    "Estimate",
-    "Payment",
-    "Complete",
-  ];
+    'contractType',
+    'Select phone number',
+    'Select Acessory',
+    'Estimate',
+    'Payment',
+    'Complete',
+  ]
   type Input = {
-    checkbox: string;
-  };
-  const { register } = useForm<Input>();
+    checkbox: string
+  }
+  const { register } = useForm<Input>()
 
   return (
     <>
@@ -56,7 +57,7 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        <Checkbox name="name" value="hoa" register={register("checkbox")} />
+        <Checkbox name="name" value="hoa" register={register('checkbox')} />
         <Steps currentIndex={changeStep}>
           {steps.map((step, index) => (
             <StepItem key={index}>{step}</StepItem>
@@ -64,24 +65,24 @@ export const Home: React.FC = () => {
         </Steps>
 
         <List>
-          {products.map((product) => (
+          {products.map(product => (
             <Row key={product.id} title={product.title}></Row>
           ))}
         </List>
-
+        <Tooltip label="hello world">hello world</Tooltip>
         <>
           <ul
             style={{
-              listStyle: "none",
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "14px",
+              listStyle: 'none',
+              display: 'flex',
+              justifyContent: 'space-between',
+              fontSize: '14px',
             }}
           >
             <li>
               <button
                 onClick={() => {
-                  setChangeStep((prev) => prev - 1);
+                  setChangeStep(prev => prev - 1)
                 }}
               >
                 prve
@@ -90,7 +91,7 @@ export const Home: React.FC = () => {
             <li>
               <button
                 onClick={() => {
-                  setChangeStep((prev) => prev + 1);
+                  setChangeStep(prev => prev + 1)
                 }}
               >
                 next
@@ -107,7 +108,7 @@ export const Home: React.FC = () => {
           </TabList>
 
           <TabPanel>
-            <div style={{ padding: "10px" }}>
+            <div style={{ padding: '10px' }}>
               <Tabs defaultIndex={0} align="end">
                 <TabList>
                   <Tab>おトクにマネ活</Tab>
@@ -133,7 +134,7 @@ export const Home: React.FC = () => {
           </TabPanel>
           <TabPanel>
             <h1>section3</h1>
-            <div style={{ padding: "10px" }}>
+            <div style={{ padding: '10px' }}>
               <Tabs defaultIndex={0} align="end">
                 <TabList>
                   <Tab>おトクにマネ活</Tab>
@@ -151,7 +152,7 @@ export const Home: React.FC = () => {
                   <h1>section2</h1>
                 </TabPanel>
                 <TabPanel>
-                  <div style={{ padding: "10px" }}>
+                  <div style={{ padding: '10px' }}>
                     <Tabs defaultIndex={0} align="end">
                       <TabList>
                         <Tab>おトクにマネ活</Tab>
@@ -180,5 +181,5 @@ export const Home: React.FC = () => {
         <p id={accessory}>Home</p>
       </Container>
     </>
-  );
-};
+  )
+}
