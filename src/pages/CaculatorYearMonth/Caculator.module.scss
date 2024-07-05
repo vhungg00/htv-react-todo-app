@@ -1,0 +1,55 @@
+.title {
+  padding-bottom: 16px;
+  font-size: 24px;
+}
+
+.formGroup {
+  display: block;
+  width: 100%;
+}
+
+.formLabel {
+  padding-bottom: 10px;
+  color: #333333;
+  font-size: 16px;
+}
+
+.inputLabel {
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.inputGroup {
+  width: 100%;
+  padding: 1.3rem 1.5rem 1.2rem;
+  font-size: 1.6rem;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: unset;
+  letter-spacing: 0.5px;
+  &:focus {
+    border-color: var(--primaryBlue);
+  }
+}
+
+.btnFormGroup {
+  padding: 1.3rem 1.5rem 1.2rem;
+  border-radius: 4px;
+  background-color: var(--primaryBlue);
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 16px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  animation: opacity 0.2s linear;
+}
+
+.notice {
+  padding-left: 16px;
+  font-size: 16px;
+  text-decoration: underline;
+}
