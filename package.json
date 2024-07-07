@@ -24,6 +24,7 @@
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
+    "react-transition-group": "^4.4.5",
     "react-with-tabs": "^1.0.12",
     "slick-carousel": "^1.8.1",
     "smooth-scroll-into-view-if-needed": "^2.0.2",
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@types/loadable__component": "^5.13.9",
     "@types/react-slick": "^0.23.13",
+    "@types/react-transition-group": "^4.4.10",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.2.1",
     "sass": "^1.71.1"

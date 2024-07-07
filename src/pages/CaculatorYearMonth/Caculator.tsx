@@ -1,14 +1,15 @@
-import React, {
-  ChangeEvent,
-  useCallback,
-  useState,
-  FormEvent,
-  useEffect,
-} from 'react'
+import React, { ChangeEvent, useCallback, useState, FormEvent, useEffect } from 'react'
 
 import style from './Caculator.module.scss'
 import { Helmet } from 'react-helmet-async'
 import { Container } from '@/components/Container'
+import {
+  Dialog,
+  DialogContainer,
+  DialogHeader,
+  DialogPortal,
+  useDialog,
+} from '@/components/modules/Dialog'
 
 export type TForm = {
   year: string | number
@@ -26,8 +27,7 @@ enum NoticeError {
 }
 
 export const Caculator: React.FC = () => {
-  const [inputs, setInputs] =
-    useState<Record<string, string | number>>(initializeForm)
+  const [inputs, setInputs] = useState<Record<string, string | number>>(initializeForm)
   const [titleNotice, setTitleNotice] = useState<string>('')
   const [styleTitle, setStyleTitle] = useState<boolean>(false)
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +62,7 @@ export const Caculator: React.FC = () => {
             setStyleTitle(true)
             break
           case 2:
-            if (year % 400 === 0 || (year % 100 != 0 && year % 4 === 0)) {
+            if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
               setTitleNotice(`Tháng ${month} năm ${year} có 29 ngày`)
             } else {
               setTitleNotice(`Tháng ${month} năm ${year} có 28 ngày`)
@@ -76,12 +76,11 @@ export const Caculator: React.FC = () => {
         setStyleTitle(false)
       }
     },
-    [inputs, titleNotice],
+    [inputs],
   )
   useEffect(() => {
     const arr: number[] = [
-      10, 20, 20, 10, 10, 30, 50, 10, 20, 1, 1, 1, 1, 1, 2, 22, 22, 3, 3, 333,
-      3,
+      10, 20, 20, 10, 10, 30, 50, 10, 20, 1, 1, 1, 1, 1, 2, 22, 22, 3, 3, 333, 3,
     ]
     const newArr = arr.reduce((acc, curr) => {
       if ((acc as number[]).indexOf(curr) === -1) {
@@ -103,12 +102,32 @@ export const Caculator: React.FC = () => {
     console.log(count, `Có ${count} đôi tất`)
   }, [])
 
+  const dialogName = 'dialog'
+  const { showDialog } = useDialog()
+
+  const handleOpenDialog = useCallback(async () => {
+    await showDialog(dialogName)
+  }, [showDialog])
+
   return (
     <>
       <Helmet>
         <title>Caculator year month</title>
       </Helmet>
       <Container>
+        <button onClick={handleOpenDialog}>click here</button>
+        <DialogPortal name={dialogName}>
+          {({ closeMain, closeSub }) => {
+            return (
+              <DialogContainer onclickBackdrop={closeMain}>
+                <Dialog>
+                  <DialogHeader onClose={closeMain} />
+                  <div>hello world</div>
+                </Dialog>
+              </DialogContainer>
+            )
+          }}
+        </DialogPortal>
         <div className={style.wrapper}>
           <h1 className={style.title}>Caculator year month</h1>
           <form onSubmit={handleSubmit}>
