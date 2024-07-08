@@ -3,6 +3,6 @@ export const ScreenUrlPath = {
   LuckyWheelGame: 'lucky-wheel-game',
   FormWithMultipleSteps: 'form-multiple',
   Todo: 'todo',
-  AllProduct: 'all-products',
+  AllProduct: 'all-product',
   CaculatorYearMonthYear: 'caculator-year-month-year',
 } as const

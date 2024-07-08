@@ -7,6 +7,7 @@ import { AppHeader } from './components/AppHeader'
 import { ScreenUrlPath } from './typing/ScreenUrlPath'
 import { AppFooter } from './components/AppFooter'
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop'
+import { Layout, LayoutMain } from './components/elements/Layout'
 // import { ScrollTopNav } from './components/elements/ScrollTopNav'
 
 const Home = loadable(() => import('@/pages/Home'), {
@@ -43,26 +44,32 @@ const App: React.FC = () => {
   return (
     <div>
       <Router>
-        <AppHeader />
-        {/* <ScrollToTop /> */}
-        {/* <ScrollTopNav /> */}
-        <Routes>
-          <Route path={ScreenUrlPath.Root} element={<Home />} />
-          <Route path={ScreenUrlPath.LuckyWheelGame} element={<LuckyGame />} />
-          <Route
-            path={ScreenUrlPath.FormWithMultipleSteps}
-            element={<FormMultiple />}
-          />
-          <Route path={ScreenUrlPath.AllProduct} element={<AllProduct />} />
-          <Route
-            path={ScreenUrlPath.CaculatorYearMonthYear}
-            element={<CaculatorYearMonth />}
-          />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <Partners />
-        <AppFooter />
-        <ScrollToTop scrollY={300} />
+        <Layout>
+          <AppHeader />
+          {/* <ScrollToTop /> */}
+          {/* <ScrollTopNav /> */}
+          <LayoutMain>
+            <Routes>
+              <Route path={ScreenUrlPath.Root} element={<Home />} />
+              <Route
+                path={ScreenUrlPath.LuckyWheelGame}
+                element={<LuckyGame />}
+              />
+              <Route
+                path={ScreenUrlPath.FormWithMultipleSteps}
+                element={<FormMultiple />}
+              />
+              <Route path={ScreenUrlPath.AllProduct} element={<AllProduct />} />
+              <Route
+                path={ScreenUrlPath.CaculatorYearMonthYear}
+                element={<CaculatorYearMonth />}
+              />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </LayoutMain>
+          <AppFooter />
+          <ScrollToTop scrollY={300} />
+        </Layout>
       </Router>
     </div>
   )
