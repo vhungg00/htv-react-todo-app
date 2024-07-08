@@ -7,6 +7,7 @@ import { SectionFilter } from './SectionFilter'
 import { Tabs, Tab } from '@/components/Tabs'
 import { useClothAllProduct } from './hooks'
 import { Loading } from '@/components/modules/Loading'
+import { InputGroup } from '@/components/modules/SecurityCode'
 
 export const AllProduct: React.FC = () => {
   const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false)
@@ -26,6 +27,7 @@ export const AllProduct: React.FC = () => {
           </Loading>
         ) : (
           <>
+            <InputGroup onChange={value => console.log(value, 'value')} />
             <Tabs variant="fullWidth">
               <Tab title="使う分だけ クに 使う分だけ ク1">
                 lemon1
