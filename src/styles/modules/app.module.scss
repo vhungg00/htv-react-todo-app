@@ -1,4 +1,4 @@
-@import "../_mixins.scss";
+@import '../_mixins.scss';
 
 .wrapper {
   max-width: 750px;
@@ -8,11 +8,12 @@
 }
 
 .header {
+  grid-area: header;
   min-width: 32rem;
   padding: 1rem;
   text-align: center;
   border-bottom: 0.1rem solid #ededed;
-
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.3);
   img {
     width: 52px;
     object-fit: cover;
@@ -20,15 +21,31 @@
 }
 
 .footer {
+  position: relative;
+  grid-area: footer;
   min-width: 32rem;
   padding: 4rem 0 14rem;
   background-color: #f2f2f2;
   border-top: 0.2rem solid #d1d1d1;
   color: var(--black-1);
   .heading {
+    position: relative;
+    z-index: 1;
     text-transform: uppercase;
     text-align: center;
     font-size: 82.5%;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-size: 5px 5px;
+    background-image: url('../../assets/images/backgroupFooter.png');
   }
 }
 
@@ -45,17 +62,16 @@
   min-width: 32rem;
   padding: 24px 7%;
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
-    z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     opacity: 0.5;
     background-size: 5px 5px;
-    background-image: url("../../assets/images/backgroupFooter.png");
+    background-image: url('../../assets/images/backgroupFooter.png');
   }
 }
 
@@ -91,7 +107,7 @@
     display: block;
     width: 0.8rem;
     height: 0.8rem;
-    content: "";
+    content: '';
     border-color: currentcolor currentcolor #333 #333;
     border-right: 0.1rem solid #333;
     border-top: 0.1rem solid #333;
