@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Box, Text } from '@chakra-ui/react'
 import { Helmet } from 'react-helmet-async'
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed'
 
@@ -11,6 +12,15 @@ import { useForm } from 'react-hook-form'
 import { List } from '@/components/List'
 import { Row } from '@/components/Row'
 import { Tooltip } from '@/components/Tooltip/Tooltip'
+import {
+  FontSizePullDown,
+  Values,
+} from '@/components/modules/SettingMenu/FontSizePullDown'
+import { TColumn, TableResize } from '@/components/modules/TableResize'
+import { TAllProduct } from '@/typing/AllProduct'
+import { allProduct } from '../AllProduct/_mock'
+import { range } from '@/utils/range'
+import { Carousel } from '@/components/modules/Carousel'
 
 const accessory = 'accessory'
 
@@ -51,18 +61,45 @@ export const Home: React.FC = () => {
   }
   const { register } = useForm<Input>()
 
+  const columns: TColumn[] = [
+    {
+      title: 'name',
+      name: 'name',
+      render: (v, record) => <Text>{v}</Text>,
+    },
+    { title: 'price', name: 'price', render: v => <Text>{v}</Text> },
+  ]
+
+  const data = [
+    { name: 'name', price: '1000adsadasdasdd' },
+    { name: 'name2', price: '1000adsaddadas1' },
+  ]
+
   return (
     <>
       <Helmet>
         <title>Home</title>
       </Helmet>
       <Container>
-        <Checkbox name="name" value="hoa" register={register('checkbox')} />
+        {/* <Checkbox name="name" value="hoa" register={register('checkbox')} />
         <Steps currentIndex={changeStep}>
           {steps.map((step, index) => (
             <StepItem key={index}>{step}</StepItem>
           ))}
         </Steps>
+        <div style={{ display: 'flex' }}>
+          <p>Flex basis</p>
+          <div
+            style={{
+              maxHeight: '24px',
+              zIndex: '1',
+              flexBasis: '128px',
+              position: 'relative',
+            }}
+          >
+            <FontSizePullDown onChange={() => {}} defaultValue={Values.STANDARD} />
+          </div>
+        </div>
 
         <List>
           {products.map(product => (
@@ -98,9 +135,23 @@ export const Home: React.FC = () => {
               </button>
             </li>
           </ul>
-        </>
+        </> */}
 
-        <Tabs defaultIndex={2} variant="fullWidth" align="end">
+        <TableResize resizeable columns={columns} data={data} />
+
+        <Carousel>
+          {range(16).map((_, index) => (
+            <Box
+              width={'50px'}
+              height={'50px'}
+              mr={'16px'}
+              backgroundColor={'gold'}
+              key={`carousel_${index}`}
+            />
+          ))}
+        </Carousel>
+
+        {/* <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
             <Tab disabled>おトクにマネ活</Tab>
             <Tab>データ使い放題</Tab>
@@ -176,7 +227,7 @@ export const Home: React.FC = () => {
               </Tabs>
             </div>
           </TabPanel>
-        </Tabs>
+        </Tabs> */}
 
         <p id={accessory}>Home</p>
       </Container>

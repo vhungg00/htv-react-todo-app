@@ -11,11 +11,13 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { store } from './store'
 import { DialogProvider } from './components/modules/Dialog'
+import { ChakraProvider } from '@chakra-ui/react'
+import { theme } from './theme'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
-  <React.StrictMode>
+  <ChakraProvider theme={theme}>
     <ThemeProvider>
       <HelmetProvider>
         <Provider store={store}>
@@ -25,6 +27,6 @@ root.render(
         </Provider>
       </HelmetProvider>
     </ThemeProvider>
-  </React.StrictMode>,
+  </ChakraProvider>,
 )
 reportWebVitals()

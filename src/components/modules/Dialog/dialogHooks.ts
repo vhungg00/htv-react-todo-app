@@ -38,7 +38,6 @@ export const DialogControllerContext = createContext<TDialogController>(
 export const useDialogState = (): TDialogController => {
   const [dialogState, setDialogState] = useState<TDialogState>(initialDialogState)
   const mutableDialogState = useRef<TDialogState>(dialogState)
-  console.log('mutableDialogState', mutableDialogState.current)
 
   const updateDialogState = useCallback<(value: TDialogState) => void>(value => {
     setDialogState(value)
@@ -76,7 +75,6 @@ export const useDialogState = (): TDialogController => {
 
   const unmount = useCallback(() => {
     if (!mutableDialogState.current.isDisplay) return
-    console.log('unmount1234')
     resolveRef.current('abort')
     updateDialogState({ isDisplay: false, name: null })
   }, [updateDialogState])
