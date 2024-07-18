@@ -68,11 +68,13 @@ export const Home: React.FC = () => {
       render: (v, record) => <Text>{v}</Text>,
     },
     { title: 'price', name: 'price', render: v => <Text>{v}</Text> },
+    { title: 'des', name: 'des', render: v => <Text>{v}</Text> },
   ]
 
   const data = [
-    { name: 'name', price: '1000adsadasdasdd' },
-    { name: 'name2', price: '1000adsaddadas1' },
+    { name: 'name', des: 'des1', price: '1000adsadasdasdd' },
+    { name: 'name2',des: 'des2', price: '1000adsaddadas1' },
+    { name: 'name2', des: 'des3', price: '1000adsaddadas1' },
   ]
 
   return (
@@ -138,18 +140,6 @@ export const Home: React.FC = () => {
         </> */}
 
         <TableResize resizeable columns={columns} data={data} />
-
-        <Carousel>
-          {range(16).map((_, index) => (
-            <Box
-              width={'50px'}
-              height={'50px'}
-              mr={'16px'}
-              backgroundColor={'gold'}
-              key={`carousel_${index}`}
-            />
-          ))}
-        </Carousel>
 
         {/* <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
