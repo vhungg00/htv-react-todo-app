@@ -65,16 +65,16 @@ export const Home: React.FC = () => {
     {
       title: 'name',
       name: 'name',
-      render: (v, record) => <Text>{v}</Text>,
+      render: v => <Text>{v}</Text>,
     },
     { title: 'price', name: 'price', render: v => <Text>{v}</Text> },
     { title: 'des', name: 'des', render: v => <Text>{v}</Text> },
   ]
 
   const data = [
-    { name: 'name', des: 'des1', price: '1000adsadasdasdd' },
-    { name: 'name2',des: 'des2', price: '1000adsaddadas1' },
-    { name: 'name2', des: 'des3', price: '1000adsaddadas1' },
+    { name: 'name', des: 'des1', price: '1001' },
+    { name: 'name2', des: 'des2', price: '1002' },
+    { name: 'name2', des: 'des3', price: '1003' },
   ]
 
   return (
@@ -139,7 +139,7 @@ export const Home: React.FC = () => {
           </ul>
         </> */}
 
-        <TableResize resizeable columns={columns} data={data} />
+        <TableResize resizeable bordered columns={columns} data={data} />
 
         {/* <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
