@@ -85,7 +85,7 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        {/* <Checkbox name="name" value="hoa" register={register('checkbox')} />
+        <Checkbox name="name" value="hoa" register={register('checkbox')} />
         <Steps currentIndex={changeStep}>
           {steps.map((step, index) => (
             <StepItem key={index}>{step}</StepItem>
@@ -139,7 +139,7 @@ export const Home: React.FC = () => {
               </button>
             </li>
           </ul>
-        </> */}
+        </>
 
         <ProgressBar completed={20} maxCompleted={100} />
 
@@ -148,7 +148,7 @@ export const Home: React.FC = () => {
 
         <TableResize resizeable bordered columns={columns} data={data} />
 
-        {/* <Tabs defaultIndex={2} variant="fullWidth" align="end">
+        <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
             <Tab disabled>おトクにマネ活</Tab>
             <Tab>データ使い放題</Tab>
@@ -224,7 +224,7 @@ export const Home: React.FC = () => {
               </Tabs>
             </div>
           </TabPanel>
-        </Tabs> */}
+        </Tabs>
 
         <p id={accessory}>Home</p>
       </Container>
