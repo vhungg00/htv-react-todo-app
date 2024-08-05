@@ -1,6 +1,7 @@
 import { getClasses } from "@/utils/getClasses";
 import React from "react";
 import "./steps.scss";
+import { ListItem } from "@chakra-ui/react";
 
 type Variant = "past" | "current" | "complete" | "goal" | "future";
 
@@ -9,7 +10,7 @@ export type StepsItemProps = {
   last?: boolean;
   currentIndex?: number;
   stepNumber?: number;
-  isStepItemActive?:boolean;
+  isStepItemActive?: boolean;
   children: React.ReactNode;
 };
 
