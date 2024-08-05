@@ -1,36 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {HelmetProvider} from "react-helmet-async";
-import {Provider} from 'react-redux';
-import {ThemeProvider} from '@/context/ThemeProvider';
-import "@fontsource/raleway";
-import '@fontsource/raleway/300.css';
-import '@fontsource/raleway/500.css';
-import '@fontsource/raleway/600.css';
-import '@fontsource/raleway/700.css';
-import '@fontsource/raleway/800.css';
-import './styles/GlobalStyles.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {store} from './store';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
+import { HelmetProvider } from 'react-helmet-async'
+import { Provider } from 'react-redux'
+import { ThemeProvider } from '@/context/ThemeProvider'
+import './styles/GlobalStyles.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { store } from './store'
+import { DialogProvider } from './components/modules/Dialog'
+import { ChakraProvider } from '@chakra-ui/react'
+import { theme } from './theme'
 
-ReactDOM.render(
-    <React.StrictMode>
-        <ThemeProvider>
-            <HelmetProvider>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
-            </HelmetProvider>
-        </ThemeProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
+root.render(
+  <ChakraProvider theme={theme}>
+    <ThemeProvider>
+      <HelmetProvider>
+        <Provider store={store}>
+          <DialogProvider>
+            <App />
+          </DialogProvider>
+        </Provider>
+      </HelmetProvider>
+    </ThemeProvider>
+  </ChakraProvider>,
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

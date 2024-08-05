@@ -17,12 +17,15 @@ export const SectionFilter: React.FC<FilterProps> = ({
   onToggle = NOP,
 }) => {
   return (
-    <ExtendContend>
+    <ExtendContend hasSeparator>
       <Section>
         <FilterHeading title="Mục lọc sản phẩm" open={open} onClick={onToggle}  />
         <Accordion isOpen={open}>
-            <SectionLv1 hasSeparator>
+            <SectionLv1>
+              <Section>
+
               <h1 style={{height: '120vh'}}>category</h1>
+              </Section>
             </SectionLv1>
         </Accordion>
       </Section>

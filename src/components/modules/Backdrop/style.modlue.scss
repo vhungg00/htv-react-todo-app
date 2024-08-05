@@ -1,0 +1,15 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.6);
+  &[data-clear='true'] {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  &[data-event='true'] {
+    cursor: pointer;
+  }
+}
