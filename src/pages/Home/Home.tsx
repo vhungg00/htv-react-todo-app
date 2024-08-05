@@ -21,6 +21,8 @@ import { TAllProduct } from '@/typing/AllProduct'
 import { allProduct } from '../AllProduct/_mock'
 import { range } from '@/utils/range'
 import { Carousel } from '@/components/modules/Carousel'
+import { ProgressBar } from '@/components/modules/Progressbar'
+import { CircularProgress } from '@/components/modules/CircularProgressbar'
 
 const accessory = 'accessory'
 
@@ -138,6 +140,11 @@ export const Home: React.FC = () => {
             </li>
           </ul>
         </> */}
+
+        <ProgressBar completed={20} maxCompleted={100} />
+
+        <CircularProgress progress={20} reduction={0} hideBall strokeWidth={10} />
+        {/* https://github.com/coupez/react-circle-progress-bar/blob/master/src/index.js */}
 
         <TableResize resizeable bordered columns={columns} data={data} />
 

@@ -562,27 +562,27 @@ export const TableResize = <T extends any>(props: Props<T>) => {
         </Box>
       </Box>
 
-      <Box
-        ref={refScrollY}
-        backgroundColor={'#dedede'}
-        borderRadius={'3px'}
-        className="scroll-y-bar"
-        display="none"
-        position="absolute"
-        right={'2px'}
-        top={0}
-        width="4px"
-      />
-      <Box
-        ref={refScrollX}
-        backgroundColor={'#dedede'}
-        borderRadius={'3px'}
-        bottom={'4px'}
-        className="scroll-x-bar"
-        display="none"
-        height={'4px'}
-        position="absolute"
-      />
+      {/* <Box
+    ref={refScrollY}
+    backgroundColor={'#dedede'}
+    borderRadius={'3px'}
+    className="scroll-y-bar"
+    display="none"
+    position="absolute"
+    right={'2px'}
+    top={0}
+    width="4px"
+  />
+  <Box
+    ref={refScrollX}
+    backgroundColor={'#dedede'}
+    borderRadius={'3px'}
+    bottom={'4px'}
+    className="scroll-x-bar"
+    display="none"
+    height={'4px'}
+    position="absolute"
+  /> */}
     </Box>
   )
 }
