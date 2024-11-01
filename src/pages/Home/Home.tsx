@@ -21,6 +21,8 @@ import { TAllProduct } from '@/typing/AllProduct'
 import { allProduct } from '../AllProduct/_mock'
 import { range } from '@/utils/range'
 import { Carousel } from '@/components/modules/Carousel'
+import { ProgressBar } from '@/components/modules/Progressbar'
+import { CircularProgress } from '@/components/modules/CircularProgressbar'
 
 const accessory = 'accessory'
 
@@ -65,16 +67,16 @@ export const Home: React.FC = () => {
     {
       title: 'name',
       name: 'name',
-      render: (v, record) => <Text>{v}</Text>,
+      render: v => <Text>{v}</Text>,
     },
     { title: 'price', name: 'price', render: v => <Text>{v}</Text> },
     { title: 'des', name: 'des', render: v => <Text>{v}</Text> },
   ]
 
   const data = [
-    { name: 'name', des: 'des1', price: '1000adsadasdasdd' },
-    { name: 'name2',des: 'des2', price: '1000adsaddadas1' },
-    { name: 'name2', des: 'des3', price: '1000adsaddadas1' },
+    { name: 'name', des: 'des1', price: '1001' },
+    { name: 'name2', des: 'des2', price: '1002' },
+    { name: 'name2', des: 'des3', price: '1003' },
   ]
 
   return (
@@ -83,7 +85,7 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
-        {/* <Checkbox name="name" value="hoa" register={register('checkbox')} />
+        <Checkbox name="name" value="hoa" register={register('checkbox')} />
         <Steps currentIndex={changeStep}>
           {steps.map((step, index) => (
             <StepItem key={index}>{step}</StepItem>
@@ -137,11 +139,16 @@ export const Home: React.FC = () => {
               </button>
             </li>
           </ul>
-        </> */}
+        </>
 
-        <TableResize resizeable columns={columns} data={data} />
+        <ProgressBar completed={20} maxCompleted={100} />
 
-        {/* <Tabs defaultIndex={2} variant="fullWidth" align="end">
+        <CircularProgress progress={20} reduction={0} hideBall strokeWidth={10} />
+        {/* https://github.com/coupez/react-circle-progress-bar/blob/master/src/index.js */}
+
+        <TableResize resizeable bordered columns={columns} data={data} />
+
+        <Tabs defaultIndex={2} variant="fullWidth" align="end">
           <TabList>
             <Tab disabled>おトクにマネ活</Tab>
             <Tab>データ使い放題</Tab>
@@ -217,7 +224,7 @@ export const Home: React.FC = () => {
               </Tabs>
             </div>
           </TabPanel>
-        </Tabs> */}
+        </Tabs>
 
         <p id={accessory}>Home</p>
       </Container>

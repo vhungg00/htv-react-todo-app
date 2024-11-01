@@ -17,7 +17,7 @@ export const FilterHeading: React.FC<FilterHeading> = ({ title, open, onClick })
             <span>{title}</span>
             <svg
               focusable="false"
-              className={["a-icon", "chevron-down__svg", `${open ? "active" : ""}`].join(" ")}
+              className={["a-icon", "chevron-down__svg", `${!open ? "active" : ""}`].join(" ")}
               viewBox="0 0 18 11"
               width="14px"
               height="12px"

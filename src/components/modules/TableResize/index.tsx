@@ -78,10 +78,14 @@ export const TableResize = <T extends any>(props: Props<T>) => {
     thStyle,
   } = props
 
-  const [widthTable] = useState<number>()
+  const [widthTable, setWidthTable] = useState<number>()
+
+  console.log('widthTable', widthTable)
 
   const refTable = useRef<HTMLDivElement>(null)
   const refResize = useRef<HTMLDivElement>(null)
+  const refScrollY = useRef<HTMLDivElement>(null)
+  const refScrollX = useRef<HTMLDivElement>(null)
   const refTh = useRef<HTMLDivElement>(null)
   const xControl = useRef<number>()
   const xResControl = useRef<{
@@ -92,7 +96,45 @@ export const TableResize = <T extends any>(props: Props<T>) => {
   }>({})
 
   // handle resize useEffect
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (resizeable || !refTable.current) return
+    const tds = refTable.current.querySelectorAll('.table-tr .table-td')
+    const ths = refTable.current.querySelectorAll('.table-th')
+    const list = Array.from(tds).concat(Array.from(ths)) as HTMLDivElement[]
+    list.forEach(element => {
+      element.style.width = ''
+      element.style.minWidth = ''
+      element.style.maxWidth = ''
+    })
+  }, [resizeable])
+
+  const minWidthTable = useMemo(() => {
+    return columns.reduce((a, b) => {
+      let width = b.width || 0
+      if (typeof width === 'string') {
+        if (width.includes('px')) {
+          width = Number(width.replace('px', ''))
+        }
+      }
+      return a + (width as number)
+    }, 0)
+  }, [columns])
+
+  console.log('minWidthTable ->', minWidthTable)
+
+  const getWidth = useCallback(
+    (column: TColumn<T>) => {
+      const { width } = column
+      const totalColNonWidth = columns.filter(e => !e.width).length
+      if (widthTable !== undefined && widthTable > minWidthTable) {
+        if (!width) {
+          return `${(widthTable - minWidthTable) / totalColNonWidth}px`
+        } else if (typeof width === 'string') return width
+        return `${width}px`
+      }
+    },
+    [columns, minWidthTable, widthTable],
+  )
 
   /* get children elements table
    * return children
@@ -134,7 +176,7 @@ export const TableResize = <T extends any>(props: Props<T>) => {
     if (index === undefined || !widthTable || !refTh.current) return
     const ths = refTh.current.querySelectorAll('.table-th') as NodeListOf<HTMLDivElement>
     const width = Array.from(ths).reduce((a, b, i) => {
-      if (listNoneWidth.includes(i)) {
+      if (!listNoneWidth.includes(i)) {
         a += b.getBoundingClientRect().width
       }
       return a
@@ -144,6 +186,19 @@ export const TableResize = <T extends any>(props: Props<T>) => {
         `.table-th:nth-child(${i + 1})`,
       ) as HTMLElement
       let widthChange: string | number = (widthTable - width) / listNoneWidth.length
+      if (widthChange < 60) widthChange = 60
+      widthChange = `${widthChange}px`
+      th.style.width = widthChange
+      th.style.maxWidth = widthChange
+      th.style.minWidth = widthChange
+      const tds = refTable.current?.querySelectorAll(
+        `.table-tr .table-td:nth-child(${i! + 1})`,
+      ) as NodeListOf<HTMLDivElement>
+      Array.from(tds || []).forEach(td => {
+        td.style.width = widthChange.toString()
+        td.style.maxWidth = widthChange.toString()
+        td.style.minWidth = widthChange.toString()
+      })
     })
   }, [])
 
@@ -231,11 +286,110 @@ export const TableResize = <T extends any>(props: Props<T>) => {
       if (!xControl.current || !refTable.current) return
       const { scrollLeft } = refTable.current
       const scrollX = scrollLeft - (xControl.current - event.pageX) / 10
+      console.log('scrollX', scrollX)
       refTable.current.scrollTo({ left: scrollX })
     },
     [onMouseMoveResize],
   )
 
+  const onScrollY = useCallback(() => {
+    if (!refTable.current || !refScrollY.current || !refTh.current) return
+    const { scrollTop, scrollHeight } = refTable.current
+    const { height: h } = refTh.current.getBoundingClientRect()
+    const { height } = refTable.current.getBoundingClientRect()
+    const heightBar = refScrollY.current.getBoundingClientRect().height
+    const hHeader = h + 3
+    const percentTop = scrollTop / (scrollHeight - height)
+    refScrollY.current.style.top = `${
+      hHeader + percentTop * (height - heightBar - 10 - hHeader)
+    }px`
+  }, [])
+
+  const calculateScrollY = useCallback(
+    (rect: ChangeLayoutEvent) => {
+      if (!refTable.current || !refScrollY.current || !refTh.current) return
+      const { height, scrollHeight } = rect
+      if (height >= scrollHeight) {
+        refScrollY.current.style.display = 'none'
+        return
+      }
+      refScrollY.current.style.display = ''
+      const heightBar = (height / scrollHeight) * height
+      refScrollY.current.style.height = `${heightBar}px`
+      onScrollY()
+    },
+    [onScrollY],
+  )
+
+  const onScrollX = useCallback(() => {
+    if (!refTable.current || !refScrollY.current || !refTh.current) return
+    if (!refTable.current || !refScrollX.current || !refTh.current) return
+    const { scrollWidth } = refTable.current
+    const { width } = refTable.current.getBoundingClientRect()
+    const { scrollLeft } = refTable.current
+    const widthBar = refScrollX.current.getBoundingClientRect().width
+    const percentLeft = scrollLeft / (scrollWidth - width)
+    refScrollX.current.style.left = `${3 + percentLeft * (width - widthBar - 6)}px`
+  }, [])
+
+  const calculateScrollX = useCallback(
+    (rect: ChangeLayoutEvent) => {
+      if (!refTable.current || !refScrollX.current || !refTh.current) return
+      const { width, scrollWidth } = rect
+      if (width >= scrollWidth) {
+        refScrollX.current.style.display = 'none'
+        return
+      }
+      refScrollX.current.style.display = ''
+      const percent = width / scrollWidth
+      refScrollX.current.style.width = `${percent * width}px`
+      onScrollX()
+    },
+    [onScrollX],
+  )
+
+  const onLayout = useCallback(
+    (rect: ChangeLayoutEvent) => {
+      calculateScrollY(rect)
+      calculateScrollX(rect)
+      setWidthTable(rect.width)
+    },
+    [calculateScrollX, calculateScrollY],
+  )
+
+  const onScroll = useCallback(() => {
+    onScrollY()
+    onScrollX()
+  }, [onScrollX, onScrollY])
+
+  // Listen event onLayout when Table change Layout
+  useEffect(() => {
+    if (!refTable.current) return
+    const element = refTable.current
+    const resizeObserver = new ResizeObserver(entries => {
+      if (entries.length) {
+        const rect = entries[0].contentRect
+        const { x, y, left, top, width, height, bottom, right } = rect
+        const rectObject: ChangeLayoutEvent = {
+          x,
+          y,
+          width,
+          height,
+          top,
+          right,
+          bottom,
+          left,
+          scrollHeight: element.scrollHeight,
+          scrollWidth: element.scrollWidth,
+        }
+        onLayout(rectObject)
+      }
+    })
+    resizeObserver.observe(element)
+    return () => {
+      resizeObserver.unobserve(element)
+    }
+  }, [onLayout])
   const cx = useCallback((...className: string[]) => className.join(' ').trim(), [])
 
   return (
@@ -257,7 +411,17 @@ export const TableResize = <T extends any>(props: Props<T>) => {
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}
     >
-      <Box ref={refTable}>
+      <Box
+        ref={refTable}
+        css={{
+          '&::-webkit-scrollbar': { width: 0 },
+        }}
+        height={'full'}
+        overflow={'auto'}
+        position={'relative'}
+        width={'100%'}
+        onScroll={onScroll}
+      >
         <Box minWidth={'max-content'} position={'relative'}>
           <Flex
             ref={refTh}
@@ -282,8 +446,11 @@ export const TableResize = <T extends any>(props: Props<T>) => {
                 color={'rgba(0 0 0 / 80%)'}
                 fontSize={'14px'}
                 fontWeight={400}
+                maxWidth={getWidth(column)}
+                minWidth={getWidth(column)}
                 padding={'12px 8px'}
                 position={'relative'}
+                width={getWidth(column)}
               >
                 <Flex
                   alignItems={'center'}
@@ -348,14 +515,18 @@ export const TableResize = <T extends any>(props: Props<T>) => {
                       lineHeight: '32px',
                     },
                   }}
-                  borderRightWidth={bordered && i !== columns.length - 1 ? 1 : 0}
+                  alignItems={'center'}
                   borderRightColor={'#d1d1d1'}
+                  borderRightWidth={bordered && i !== columns.length - 1 ? 1 : 0}
                   className={'table-td'}
                   color={'#dedede'}
                   fontSize={'14px'}
                   fontWeight={400}
+                  maxWidth={getWidth(column)}
+                  minWidth={getWidth(column)}
                   padding={'12px 8px'}
                   position={'relative'}
+                  width={getWidth(column)}
                 >
                   <Box width={'full'}>{getChildren(column, d)}</Box>
                   {resizeable && i < columns.length - 1 ? (
@@ -390,6 +561,28 @@ export const TableResize = <T extends any>(props: Props<T>) => {
           </Box>
         </Box>
       </Box>
+
+      {/* <Box
+    ref={refScrollY}
+    backgroundColor={'#dedede'}
+    borderRadius={'3px'}
+    className="scroll-y-bar"
+    display="none"
+    position="absolute"
+    right={'2px'}
+    top={0}
+    width="4px"
+  />
+  <Box
+    ref={refScrollX}
+    backgroundColor={'#dedede'}
+    borderRadius={'3px'}
+    bottom={'4px'}
+    className="scroll-x-bar"
+    display="none"
+    height={'4px'}
+    position="absolute"
+  /> */}
     </Box>
   )
 }
