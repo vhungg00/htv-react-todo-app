@@ -85,7 +85,25 @@ export const Home: React.FC = () => {
         <title>Home</title>
       </Helmet>
       <Container>
+        <FontSizePullDown />
         <Checkbox name="name" value="hoa" register={register('checkbox')} />
+        <Carousel>
+          <div style={{ minWidth: '50px' }}>1</div>
+          <div style={{ minWidth: '50px' }}>2</div>
+          <div style={{ minWidth: '50px' }}>3</div>
+          <div style={{ minWidth: '50px' }}>4</div>
+          <div style={{ minWidth: '50px' }}>5</div>
+          <div style={{ minWidth: '50px' }}>6</div>
+          <div style={{ minWidth: '50px' }}>7</div>
+          <div style={{ minWidth: '50px' }}>8</div>
+          <div style={{ minWidth: '50px' }}>9</div>
+          <div style={{ minWidth: '50px' }}>10</div>
+          <div style={{ minWidth: '50px' }}>11</div>
+          <div style={{ minWidth: '50px' }}>12</div>
+          <div style={{ minWidth: '50px' }}>13</div>
+          <div style={{ minWidth: '50px' }}>14</div>
+          <div style={{ minWidth: '50px' }}>15</div>
+        </Carousel>
         <Steps currentIndex={changeStep}>
           {steps.map((step, index) => (
             <StepItem key={index}>{step}</StepItem>
