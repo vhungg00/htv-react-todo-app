@@ -19,9 +19,9 @@ type Option = {
 }
 
 type Props = {
-  defaultValue: Option['value']
+  defaultValue?: Option['value']
   value?: Option['value'] | string
-  onChange: (value: Option['value']) => void
+  onChange?: (value: Option['value']) => void
   disabled?: boolean
 }
 
@@ -46,7 +46,7 @@ export const FontSizePullDown = ({
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target) return
-    onChange(e.target.value as Values)
+    onChange?.(e.target.value as Values)
     onCloseDetails()
   }, [])
 
@@ -98,6 +98,7 @@ const Details = styled.details`
   flex-direction: column;
   height: max-content;
   list-style-type: '';
+  position: relative;
 `
 
 const Summary = styled.summary`
@@ -119,6 +120,7 @@ const Form = styled.form`
   padding-top: 2px;
   padding-bottom: 1px;
   width: 100%;
+  position: absolute;
 `
 const Option = styled.label`
   display: flex;
